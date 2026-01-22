@@ -59,7 +59,7 @@ export default function Contact() {
             اتصل <span className="text-accent">بنا</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            لديك أسئلة عن مجموعاتنا؟ نحن هنا للمساعدة والإجابة على جميع استفساراتك
+            لديك أسئلة عن مجموعاتنا الرياضية؟ نحن هنا للمساعدة والإجابة على جميع استفساراتك
           </p>
         </div>
 
@@ -68,20 +68,20 @@ export default function Contact() {
             {
               icon: Phone,
               label: "الهاتف",
-              value: "+1 (555) 123-4567",
+              value: "01225239402",
               detail: "اتصل بنا من 9 صباحاً إلى 6 مساءً",
             },
             {
               icon: Mail,
               label: "البريد الإلكتروني",
-              value: "info@basiq.example",
+              value: "info@sakrsports.example",
               detail: "سنتواصل معك في أقرب وقت ممكن",
             },
             {
               icon: MapPin,
               label: "العنوان",
-              value: "نيويورك، نيويورك",
-              detail: "منطقة الأزياء، مانهاتن",
+              value: "أجهور الكبرى, مركز طوخ, القليوبية",
+              detail: "منطقة العشماوي",
             },
           ].map((contact, index) => {
             const Icon = contact.icon;
@@ -116,24 +116,26 @@ export default function Contact() {
             <div className="space-y-6 bg-gradient-to-br from-secondary to-card p-8 rounded-xl">
               <div>
                 <p className="font-semibold text-foreground mb-2">اسم العلامة التجارية</p>
-                <p className="text-foreground">BASIQ أزياء رجالية</p>
+                <p className="text-foreground">Sakr Sports ملابس رياضية</p>
               </div>
               <div>
                 <p className="font-semibold text-foreground mb-2">
                   البريد الإلكتروني
                 </p>
-                <p className="text-foreground">info@basiq.example</p>
+                <p className="text-foreground">info@sakrsports.example</p>
               </div>
               <div>
                 <p className="font-semibold text-foreground mb-2">العنوان</p>
-                <p className="text-foreground">منطقة الأزياء - مانهاتن، نيويورك</p>
+                <p className="text-foreground">أجهور الكبرى, مركز طوخ, القليوبية</p>
               </div>
               <div>
                 <p className="font-semibold text-foreground mb-2">ساعات العمل</p>
                 <p className="text-foreground">
-                  من الإثنين إلى الجمعة: 9:00 - 18:00
+                  من السبت إلى الخميس: 8:00 - 22:00
                 </p>
-                <p className="text-foreground">السبت والأحد: مغلق</p>
+                <p className="text-foreground">
+                  الجمعة: 2:00 - 22:00
+                </p>
               </div>
             </div>
           </div>

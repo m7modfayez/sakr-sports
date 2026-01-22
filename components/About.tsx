@@ -5,10 +5,10 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-in-right space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-              عن <span className="text-accent">BASIQ</span>
+              عن <span className="text-accent">Sakr Sports</span>
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              BASIQ هي علامة تجارية للأزياء الرجالية الفاخرة مكرسة للجودة الاستثنائية والأناقة العصرية. نقدم مجموعات منتقاة بعناية تجمع بين الأناقة الخالدة والاتجاهات الحديثة للرجل المميز الذي يقدر الحرفية والاهتمام بالتفاصيل.
+              Sakr Sports هي علامة تجارية للملابس الرياضية مكرسة للجودة الاستثنائية والأداء الاحترافي. نقدم مجموعات منتقاة بعناية تجمع بين التقنية الرياضية المتقدمة والأناقة العصرية للرياضيين المميزين الذين يقدرون الأداء والاهتمام بالتفاصيل.
             </p>
           </div>
 

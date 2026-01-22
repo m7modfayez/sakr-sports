@@ -22,9 +22,16 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="text-2xl font-extrabold text-foreground hover:text-accent transition-colors"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-             BASIQ
+              <img 
+                src="/sakrlogo.jpg" 
+                alt="Sakr Sports Logo" 
+                className="h-10 w-auto"
+              />
+              <span className="text-2xl font-extrabold text-foreground">
+                Sakr Sports
+              </span>
             </Link>
           </div>
 

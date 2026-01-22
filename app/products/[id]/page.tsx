@@ -81,7 +81,7 @@ export default function ProductDetailPage() {
 
   //whats app link for details.
   const openWhatsApp = () => {
-    const phone = "201285279824";
+    const phone = "201225239402";
   
     const message = `السلام عليكم، عايز تفاصيل عن ${product.title} بسعر ${product.price} جنيه 👋
 

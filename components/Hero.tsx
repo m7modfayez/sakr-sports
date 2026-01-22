@@ -1,16 +1,20 @@
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-[600px] bg-gradient-to-br from-background to-secondary pt-20 pb-16 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="hero" className="min-h-[300px] md:min-h-[600px] relative pt-20 pb-16 px-4 overflow-hidden">
+      {/* Background gradient only */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-secondary/90" />
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center space-y-8 animate-fade-in-up">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
-            أزياء رجالية فاخرة
+            ملابس رياضية احترافية
             <br />
-            <span className="text-accent">من BASIQ</span>
+            <span className="text-accent">من Sakr Sports</span>
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            اكتشف مجموعتنا الحصرية من الأزياء الرجالية الفاخرة. الجودة العالية تلبي الأناقة العصرية للرجل المميز.
+            اكتشف مجموعتنا الحصرية من الملابس الرياضية الاحترافية. الجودة العالية تلبي أداء استثنائي للرياضيين المميزين.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
@@ -25,9 +29,9 @@ export default function Hero() {
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: '👔', label: 'أقمشة عالية الجودة', delay: '0s' },
-            { icon: '🌍', label: 'شحن دولي', delay: '0.2s' },
-            { icon: '✓', label: 'علامة تجارية موثوقة', delay: '0.4s' },
+            { icon: '🏃', label: 'أداء رياضي فائق', delay: '0s' },
+            { icon: '�', label: 'جودة احترافية', delay: '0.2s' },
+            { icon: '🏆', label: 'علامة تجارية موثوقة', delay: '0.4s' },
           ].map((stat, index) => (
             <div
               key={index}

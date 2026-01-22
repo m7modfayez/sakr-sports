@@ -1,9 +1,12 @@
 import { redirect } from "next/navigation";
-import { supabaseServer, getUserAppId, } from "@/lib/supabase-server";
+import { getSupabaseServer, getUserAppId } from "@/lib/supabase-server";
 import { APP_ID } from "@/lib/app-config";
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { data: { user } } = await supabaseServer.auth.getUser();
+  const supabase = getSupabaseServer();
+  const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) redirect("/login");
 

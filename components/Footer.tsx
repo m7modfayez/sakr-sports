@@ -8,11 +8,11 @@ export default function Footer() {
           <div className="animate-fade-in-up" style={{ animationDelay: '0s' }}>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center font-bold">
-                BQ
+                SS
               </div>
-              <span className="text-xl font-bold">BASIQ</span>
+              <span className="text-xl font-bold">Sakr Sports</span>
             </div>
-            <p className="text-muted-foreground">علامة تجارية للأزياء الرجالية الفاخرة تقدم أناقة راقية وجودة استثنائية للرجل العصري</p>
+            <p className="text-muted-foreground">علامة تجارية للملابس الرياضية تقدم أداء استثنائي وأناقة عصرية للرياضيين المميزين</p>
             <p className="mt-2 text-sm text-gray-500">تم تصميم وتطوير هذا الموقع بواسطة <br /> <span><b>Mahmoud Fayez, </b></span><span><b>Mahmoud Elabady</b></span> </p>
           </div>
 
@@ -45,11 +45,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span>📧</span>
-                <a href="mailto:info@basiq.example" className="hover:text-accent transition-colors">info@basiq.example</a>
+                <a href="mailto:info@sakrsports.example" className="hover:text-accent transition-colors">info@sakrsports.example</a>
               </li>
               <li className="flex items-center gap-2">
                 <span>📍</span>
-                <span>نيويورك، نيويورك</span>
+                <span>أجهور الكبرى, مركز طوخ, القليوبية</span>
               </li>
             </ul>
           </div>
@@ -57,7 +57,7 @@ export default function Footer() {
 
         <div className="border-t border-border pt-8">
           <div className="text-center text-muted-foreground">
-            <p>© {currentYear} BASIQ أزياء رجالية - جميع الحقوق محفوظة</p>
+            <p>© {currentYear} Sakr Sports ملابس رياضية - جميع الحقوق محفوظة</p>
           </div>
         </div>
       </div>

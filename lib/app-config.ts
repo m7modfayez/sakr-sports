@@ -1,1 +1,2 @@
-export const APP_ID = "clothes_app";
+export const APP_ID = "sakr_sports_app";
+

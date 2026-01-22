@@ -7,9 +7,9 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BASIQ",
+  title: "Sakr Sports",
   description:
-    "BASIQ - علامة تجارية للأزياء الرجالية الفاخرة. نقدم مجموعات منتقاة بعناية تجمع بين الأناقة الخالدة والاتجاهات الحديثة للرجل المميز.",
+    "Sakr Sports - علامة تجارية للملابس الرياضية. نقدم مجموعات منتقاة بعناية تجمع بين الأداء الرياضي والأناقة العصرية للرياضيين المميزين.",
 };
 
 export default function RootLayout({
