@@ -9,9 +9,9 @@ export default function Header() {
 
   const navItems = [
     { label: "الرئيسية", href: "/" },
+    { label: "المنتجات", href: "/products" },
     { label: "من نحن", href: "/#about" },
     { label: "المجموعات", href: "/#services" },
-    { label: "المنتجات", href: "/products" },
     { label: "اتصل بنا", href: "/#contact" },
   ];
 
@@ -25,13 +25,13 @@ export default function Header() {
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
               <img 
-                src="/sakrlogo.jpg" 
+                src="/Sakr-logo.jpg" 
                 alt="Sakr Sports Logo" 
                 className="h-10 w-auto"
               />
-              <span className="text-2xl font-extrabold text-foreground">
+              {/* <span className="text-2xl font-extrabold text-foreground">
                 Sakr Sports
-              </span>
+              </span> */}
             </Link>
           </div>
 
@@ -57,24 +57,24 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
+            {/* <Link
               href="/login"
               className="text-foreground hover:text-accent transition-colors font-medium md:hidden"
               onClick={() => setIsOpen(false)}
             >
               لوحة التحكم
-            </Link>
+            </Link> */}
           </div>
 
           <div className="hidden md:flex gap-4">
-            <Link
+            {/* <Link
               href="/login"
               className="text-foreground hover:text-accent transition-colors font-medium"
             >
               لوحة التحكم
-            </Link>
+            </Link> */}
             <a
-              href="/#contact"
+              href="/#products"
               className="bg-accent text-accent-foreground px-6 py-2 rounded-lg hover:bg-accent/90 transition-colors font-semibold"
             >
               تسوق الآن

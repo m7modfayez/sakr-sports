@@ -49,10 +49,10 @@ export default function ProductsPage() {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-foreground mb-4">
-              مجموعات <span className="text-accent">Sakr Sports</span>
+              منتجات <span className="text-accent">Sakr Sports</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              اكتشف مجموعاتنا المنتقاة بعناية من الملابس الرياضية الاحترافية
+              اكتشف منتجاتنا المنتقاة بعناية من الملابس الرياضية الاحترافية
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export default function ProductsPage() {
 
           {/* Loading */}
           {isLoading && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="rounded-xl overflow-hidden shadow-lg">
                   <Skeleton className="h-64 w-full" />
@@ -89,7 +89,7 @@ export default function ProductsPage() {
           )}
 
           {!isLoading && filteredProducts.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {filteredProducts.map((product) => {
                 const image = getFirstImage(product);
 

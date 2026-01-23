@@ -68,29 +68,40 @@ export default function Contact() {
             {
               icon: Phone,
               label: "الهاتف",
-              value: "01225239402",
+              value: "010 15185006",
+              link: "tel:01015185006",
               detail: "اتصل بنا من 9 صباحاً إلى 6 مساءً",
             },
-            {
-              icon: Mail,
-              label: "البريد الإلكتروني",
-              value: "info@sakrsports.example",
-              detail: "سنتواصل معك في أقرب وقت ممكن",
-            },
+            // {
+            //   icon: Mail,
+            //   label: "البريد الإلكتروني",
+            //   value: "info@sakrsports.example",
+            //   detail: "سنتواصل معك في أقرب وقت ممكن",
+            // },
             {
               icon: MapPin,
               label: "العنوان",
               value: "أجهور الكبرى, مركز طوخ, القليوبية",
+              link: "https://maps.app.goo.gl/ag1wErno833WvVgU7",
+              detail: "منطقة العشماوي",
+            },
+             {
+              icon: MapPin,
+              label: "العنوان الثاني",
+              value: "فرع القناطر الخيرية -شارع سور النادي أمام الرعاية",
+              // link: "https://maps.app.goo.gl/ag1wErno833WvVgU7",
               detail: "منطقة العشماوي",
             },
           ].map((contact, index) => {
             const Icon = contact.icon;
             return (
-              <div
+               <div
+               
                 key={index}
                 className="bg-secondary p-8 rounded-xl text-center hover-lift animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                <a href={contact.link} target="blank">
                 <div className="flex justify-center mb-4">
                   <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-accent-foreground">
                     <Icon size={28} />
@@ -100,15 +111,16 @@ export default function Contact() {
                   {contact.label}
                 </h3>
                 <p className="text-accent font-semibold mb-2">
-                  {contact.value}
+                   {contact.value}
                 </p>
                 <p className="text-muted-foreground text-sm">{contact.detail}</p>
+              </a>
               </div>
             );
           })}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
           <div className="animate-slide-in-right">
             <h3 className="text-2xl font-bold text-foreground mb-6">
               معلومات إضافية
@@ -118,12 +130,12 @@ export default function Contact() {
                 <p className="font-semibold text-foreground mb-2">اسم العلامة التجارية</p>
                 <p className="text-foreground">Sakr Sports ملابس رياضية</p>
               </div>
-              <div>
+              {/* <div>
                 <p className="font-semibold text-foreground mb-2">
                   البريد الإلكتروني
                 </p>
                 <p className="text-foreground">info@sakrsports.example</p>
-              </div>
+              </div> */}
               <div>
                 <p className="font-semibold text-foreground mb-2">العنوان</p>
                 <p className="text-foreground">أجهور الكبرى, مركز طوخ, القليوبية</p>
@@ -140,7 +152,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="animate-slide-in-left">
+          {/* <div className="animate-slide-in-left">
             <form
               onSubmit={handleSubmit}
               className="space-y-6 bg-secondary p-8 rounded-xl"
@@ -227,7 +239,7 @@ export default function Contact() {
                 {isSubmitting ? "جاري الإرسال..." : "أرسل الرسالة"}
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

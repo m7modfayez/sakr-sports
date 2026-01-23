@@ -18,7 +18,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <a href="#contact" className="bg-accent text-accent-foreground px-8 py-3 rounded-lg hover:bg-accent/90 transition-colors font-semibold text-lg hover-lift">
+            <a href="#products" className="bg-accent text-accent-foreground px-8 py-3 rounded-lg hover:bg-accent/90 transition-colors font-semibold text-lg hover-lift">
               تسوق المجموعة
             </a>
             <a href="#about" className="border-2 border-accent text-accent px-8 py-3 rounded-lg hover:bg-accent/10 transition-colors font-semibold text-lg hover-lift">

@@ -120,7 +120,7 @@ export default function Products() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-5xl font-bold text-foreground mb-4">
-            المجموعات <span className="text-accent">المميزة</span>
+            منتجاتنا <span className="text-accent">المميزة</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             اكتشف اختيارنا المنتقى من الأزياء الرجالية الفاخرة

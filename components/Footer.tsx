@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-foreground text-background py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="animate-fade-in-up" style={{ animationDelay: '0s' }}>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center font-bold">
@@ -19,14 +19,14 @@ export default function Footer() {
           <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <h4 className="text-lg font-bold mb-4">روابط سريعة</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#hero" className="hover:text-accent transition-colors">الرئيسية</a></li>
-              <li><a href="#about" className="hover:text-accent transition-colors">من نحن</a></li>
-              <li><a href="#services" className="hover:text-accent transition-colors">المجموعات</a></li>
-              <li><a href="#products" className="hover:text-accent transition-colors">المنتجات</a></li>
+              <li><a href="#hero" className="hover:text-white transition-colors">الرئيسية</a></li>
+              <li><a href="#about" className="hover:text-white transition-colors">من نحن</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">المجموعات</a></li>
+              <li><a href="#products" className="hover:text-white transition-colors">المنتجات</a></li>
             </ul>
           </div>
 
-          <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          {/* <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <h4 className="text-lg font-bold mb-4">المجموعات</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li><a href="#services" className="hover:text-accent transition-colors">مجموعة الأعمال</a></li>
@@ -34,22 +34,26 @@ export default function Footer() {
               <li><a href="#services" className="hover:text-accent transition-colors">خياطة مخصصة</a></li>
               <li><a href="#services" className="hover:text-accent transition-colors">استشارة أناقة</a></li>
             </ul>
-          </div>
+          </div> */}
 
           <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
             <h4 className="text-lg font-bold mb-4">اتصل بنا</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li className="flex items-center gap-2">
                 <span>📞</span>
-                <a href="tel:+15551234567" className="hover:text-accent transition-colors">+1 (555) 123-4567</a>
+                <a href="tel:01015185006" className="hover:text-white transition-colors">01015185006</a>
               </li>
-              <li className="flex items-center gap-2">
+              {/* <li className="flex items-center gap-2">
                 <span>📧</span>
                 <a href="mailto:info@sakrsports.example" className="hover:text-accent transition-colors">info@sakrsports.example</a>
-              </li>
+              </li> */}
               <li className="flex items-center gap-2">
                 <span>📍</span>
                 <span>أجهور الكبرى, مركز طوخ, القليوبية</span>
+              </li>
+               <li className="flex items-center gap-2">
+                <span>📍</span>
+                <span>فرع القناطر الخيرية -شارع سور النادي أمام الرعاية</span>
               </li>
             </ul>
           </div>

@@ -17,7 +17,7 @@ export default function About() {
               <div className="space-y-8">
                 {[
                   { number: '10+', label: 'سنوات من التميز' },
-                  { number: '500+', label: 'عميل راضٍ' },
+                  { number: '5000+', label: 'عميل راضٍ' },
                   { number: '50+', label: 'مجموعة فاخرة' },
                 ].map((stat, index) => (
                   <div key={index} className="border-b border-accent/30 pb-6 last:border-b-0 animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
