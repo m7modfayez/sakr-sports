@@ -175,9 +175,17 @@ export default function ProductDetailPage() {
             <div className="text-right">
               <h1 className="text-5xl font-bold mb-6">{product.title}</h1>
 
+             {product.price_before_discount > 0 && (
+              <p className="text-2xl font-bold line-through decoration-3 text-accent opacity-40 mb-4">
+                {product.price_before_discount.toFixed(2)} ج.م
+              </p>
+              )}
+
+              {product.price > 0 && (
               <p className="text-4xl font-bold text-accent mb-8">
                 {product.price.toFixed(2)} ج.م
               </p>
+              )}
 
               {product.description && (
                 <div className="mb-8">

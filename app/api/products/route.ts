@@ -34,12 +34,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Title is required" }, { status: 400 });
     }
 
-    if (data.price === undefined || isNaN(Number(data.price))) {
-      return NextResponse.json(
-        { error: "Valid price is required" },
-        { status: 400 }
-      );
-    }
+    // if (data.price === undefined || isNaN(Number(data.price))) {
+    //   return NextResponse.json(
+    //     { error: "Valid price is required" },
+    //     { status: 400 }
+    //   );
+    // }
 
     if (!Array.isArray(data.image_urls) || data.image_urls.length === 0) {
       return NextResponse.json(
@@ -53,6 +53,7 @@ export async function POST(request: NextRequest) {
       title: data.title,
       description: data.description ?? "",
       price: Number(data.price),
+      price_before_discount: Number(data.price_before_discount),
       image_urls: data.image_urls,
       specs: Array.isArray(data.specs) ? data.specs : [],
     };
@@ -105,6 +106,9 @@ export async function PUT(request: NextRequest) {
       title: data.title,
       description: data.description,
       price: data.price !== undefined ? Number(data.price) : undefined,
+      price_before_discount: data.price_before_discount !== undefined
+    ? Number(data.price_before_discount)
+    : undefined,
       image_urls: data.image_urls,
       specs: Array.isArray(data.specs) ? data.specs : undefined,
     });

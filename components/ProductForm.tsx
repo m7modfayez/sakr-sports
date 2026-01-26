@@ -23,7 +23,8 @@ import { toast } from "sonner";
 const formSchema = z.object({
   title: z.string().min(2, "الاسم مطلوب"),
   description: z.string().optional(),
-  price: z.string().min(1, "السعر مطلوب"),
+  price: z.string().optional(),
+  price_before_discount: z.string().optional(),
   specs: z
     .array(z.object({ value: z.string() }))
     .min(1, "أضف ميزة واحدة على الأقل"),
@@ -73,6 +74,7 @@ export default function ProductForm({
           title: "",
           description: "",
           price: "",
+          price_before_discount: "",
           specs: [{ value: "" }],
         },
   });
@@ -258,7 +260,29 @@ export default function ProductForm({
                       <Input
                         {...field}
                         className="h-11 text-base"
-                        placeholder="مثال: بدلة رجالية كلاسيكية"
+                        placeholder="مثال: ترنج رياضي  "
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+
+              <FormField
+                control={form.control}
+                name="price_before_discount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm font-semibold text-foreground">
+                     (اختياري) السعر  قبل الخصم (ج.م)
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        {...field}
+                        className="h-11 text-base"
+                        placeholder="0.00"
                       />
                     </FormControl>
                     <FormMessage />

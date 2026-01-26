@@ -124,7 +124,27 @@ export default function Dashboard() {
                           </div>
                         </div>
                       </td>
-                      <td className="p-4">{product.price} ج.م</td>
+                      {/* <td className="p-4">
+                        {product.price_before_discount ? <span className="p-1 line-through opacity-50">{product.price_before_discount}</span> : ''}
+                        {product.price ? `${product.price} ج.م` : "غير مضاف"}
+                      </td> */}
+
+                      <td className="p-4">
+                        <div className="flex flex-col gap-1">
+                          {product.price_before_discount ? (
+                            <span className="text-sm text-muted-foreground line-through">
+                              {product.price_before_discount} 
+                            </span>
+                          ) : ''}
+                      
+                          <span className="font-semibold">
+                            {product.price ? `${product.price} ج.م` : "-"}
+                          </span>
+                        </div>
+                      </td>
+                      
+
+                      
                       <td className="p-4 text-center">
                         <Button
                           size="icon"

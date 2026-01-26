@@ -120,9 +120,18 @@ export default function ProductsPage() {
                         {product.description}
                       </p>
 
+                     {/* make it if the price exist */}
+                     {product.price_before_discount > 0 && (
+                      <p className="text-2xl line-through decoration-3 opacity-40 font-bold text-accent mb-1">
+                        {product.price_before_discount.toFixed(2)}
+                      </p>
+                      )}
+
+                     {product.price > 0 && (
                       <p className="text-3xl font-bold text-accent mb-6">
                         {product.price.toFixed(2)}
                       </p>
+                      )}
 
                       <button
                         onClick={() => router.push(`/products/${product.id}`)}
