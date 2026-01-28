@@ -75,7 +75,7 @@ export default function HomeCategories() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
               {categories.map((category, index) => (
                 <Link
                   key={category.id}
@@ -92,10 +92,10 @@ export default function HomeCategories() {
                     <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
                       {category.name}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
+                    <p className="hidden md:block text-sm text-muted-foreground leading-relaxed mb-4">
                       استكشف منتجات قسم {category.name}
                     </p>
-                    <div className="flex items-center justify-between">
+                    <div className="md:flex items-center justify-between">
                       <div className="w-12 h-1 bg-accent rounded-full"></div>
                       <span className="text-accent font-medium text-sm group-hover:translate-x-2 transition-transform">
                         عرض المنتجات ←
