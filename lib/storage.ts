@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { supabaseBrowser } from "./supabase";
-import { ProductInsert } from "@/types";
+import { ProductInsert, CategoryInsert } from "@/types";
 import { v4 as uuidv4 } from "uuid";
 import {APP_ID} from "./app-config";
 
@@ -160,4 +160,96 @@ export async function deleteProduct(id: string) {
   const { error } = await supabase.from("products").delete().eq("id", id);
 
   return !error;
+}
+
+/* -------------------- Category CRUD -------------------- */
+export async function getCategories() {
+  const supabase = getServerClient();
+  const { data, error } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("app_id", APP_ID)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data;
+}
+
+export async function getCategoryById(id: string) {
+  const supabase = getServerClient();
+  const { data, error } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("id", id)
+    .eq("app_id", APP_ID)
+    .single();
+  if (error) return null;
+  return data;
+}
+
+export async function addCategory(category: CategoryInsert) {
+  const supabase = getServerClient();
+  const { data, error } = await supabase
+    .from("categories")
+    .insert({
+      ...category,
+      app_id: APP_ID,
+    })
+    .select()
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+export async function updateCategory(
+  id: string,
+  updates: Partial<CategoryInsert>
+) {
+  const supabase = getServerClient();
+  const { data, error } = await supabase
+    .from("categories")
+    .update(updates)
+    .eq("id", id)
+    .eq("app_id", APP_ID)
+    .select()
+    .single();
+  if (error) return null;
+  return data;
+}
+
+export async function deleteCategory(id: string) {
+  const supabase = getServerClient();
+  const { error } = await supabase.from("categories").delete().eq("id", id).eq("app_id", APP_ID);
+  return !error;
+}
+
+export async function getProductsByCategory(categoryId: string) {
+  const supabase = getServerClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select(`
+      *,
+      categories (
+        id,
+        name
+      )
+    `)
+    .eq("category_id", categoryId)
+    .eq("app_id", APP_ID)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data;
+}
+
+export async function getRandomProducts(limit: number = 8) {
+  const supabase = getServerClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("app_id", APP_ID)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  
+  // Simple random selection - shuffle and take first 'limit' items
+  const shuffled = data.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, limit);
 }

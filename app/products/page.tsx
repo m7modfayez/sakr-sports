@@ -52,7 +52,7 @@ export default function ProductsPage() {
               منتجات <span className="text-accent">Sakr Sports</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              اكتشف منتجاتنا المنتقاة بعناية من الملابس الرياضية الاحترافية
+              اكتشف تشكيلة منتقاة من منتجاتنا العالية الجودة من الملابس الرياضية الاحترافية
             </p>
           </div>
 
@@ -89,7 +89,7 @@ export default function ProductsPage() {
           )}
 
           {!isLoading && filteredProducts.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {filteredProducts.map((product) => {
                 const image = getFirstImage(product);
 
@@ -98,7 +98,7 @@ export default function ProductsPage() {
                     key={product.id}
                     className="bg-card rounded-xl overflow-hidden shadow-lg hover:scale-105 transition"
                   >
-                    <div className="h-64 bg-gradient-to-r from-accent to-accent/80">
+                    <div className="h-54 bg-gradient-to-r from-accent to-accent/80">
                       {image ? (
                         <img
                           src={image}
@@ -113,22 +113,22 @@ export default function ProductsPage() {
                     </div>
 
                     <div className="p-6 text-right">
-                      <h3 className="text-2xl font-bold text-foreground mb-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                         {product.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-4">
+                      <p className="hidden md:block text-sm text-muted-foreground mb-3">
                         {product.description}
                       </p>
 
                      {/* make it if the price exist */}
                      {product.price_before_discount > 0 && (
-                      <p className="text-2xl line-through decoration-3 opacity-40 font-bold text-accent mb-1">
+                      <p className="text-lg md:text-2xl line-through decoration-3 opacity-40 font-bold text-accent">
                         {product.price_before_discount.toFixed(2)}
                       </p>
                       )}
 
                      {product.price > 0 && (
-                      <p className="text-3xl font-bold text-accent mb-6">
+                      <p className="text-xl md:text-3xl font-bold text-accent mb-3">
                         {product.price.toFixed(2)}
                       </p>
                       )}

@@ -90,7 +90,7 @@ export default function Contact() {
               label: "العنوان الثاني",
               value: "فرع القناطر الخيرية -شارع سور النادي أمام الرعاية",
               // link: "https://maps.app.goo.gl/ag1wErno833WvVgU7",
-              detail: "منطقة العشماوي",
+              detail: "",
             },
           ].map((contact, index) => {
             const Icon = contact.icon;

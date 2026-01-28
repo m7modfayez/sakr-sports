@@ -10,9 +10,10 @@ export default function Header() {
   const navItems = [
     { label: "الرئيسية", href: "/" },
     { label: "المنتجات", href: "/products" },
-    { label: "من نحن", href: "/#about" },
-    { label: "المجموعات", href: "/#services" },
-    { label: "اتصل بنا", href: "/#contact" },
+    { label: "الأقسام", href: "/categories" },
+    // { label: "من نحن", href: "/#about" },
+    // { label: "المجموعات", href: "/#services" },
+    // { label: "اتصل بنا", href: "/#contact" },
   ];
 
   return (

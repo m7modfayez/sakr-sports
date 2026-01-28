@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import ProductForm from "@/components/ProductForm";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ import { getFirstImage } from "@/lib/utils";
 import { Product } from "@/types";
 
 export default function Dashboard() {
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -78,6 +80,12 @@ export default function Dashboard() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
+            <Button 
+              variant="outline"
+              onClick={() => router.push("/dashboard/categories")}
+            >
+              <Package className="w-4 h-4 mr-1" /> الأقسام
+            </Button>
             <Button onClick={() => setIsAddOpen(true)}>
               <Plus className="w-4 h-4 mr-1" /> إضافة
             </Button>

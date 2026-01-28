@@ -57,7 +57,8 @@ export default function Products() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/api/products");
+        // Fetch 3 random products for home page
+        const response = await fetch("/api/products?random=true&limit=4");
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
@@ -82,7 +83,7 @@ export default function Products() {
             <Skeleton className="h-4 w-3/4 mx-auto bg-gray-200" />
           </div>
           <div className="h-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[1, 2, 3].map((index) => (
+            {[1, 2, 3, 4].map((index) => (
               <div
                 key={index}
                 className="group bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden shadow-lg"
@@ -120,7 +121,7 @@ export default function Products() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-5xl font-bold text-foreground mb-4">
-            منتجاتنا <span className="text-accent">المميزة</span>
+        بعض    منتجاتنا   <span className="text-accent">المميزة</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             اكتشف اختيارنا المنتقى من الأزياء الرجالية الفاخرة
@@ -128,13 +129,13 @@ export default function Products() {
         </div>
 
         <div className="h-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-          {products.slice(0, 3).map((product, index) => (
+          {products.map((product, index) => (
             <div
               key={index}
               className="group bg-gradient-to-br from-secondary to-card rounded-xl overflow-hidden shadow-lg hover-lift animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="h-64 bg-gradient-to-r from-accent to-accent/80 flex items-center justify-center">
+              <div className="h-54 bg-gradient-to-r from-accent to-accent/80 flex items-center justify-center">
                 {getFirstImage(product) ? (
                   <img
                     src={getFirstImage(product)}
@@ -146,12 +147,12 @@ export default function Products() {
                 )}
               </div>
 
-              <div className="p-8">
+              <div className="p-6">
                 <h3 className="text-2xl font-bold text-foreground mb-2">
                   {product.title}
                 </h3>
                 <p className="text-muted-foreground mb-6">{product.description}</p>
-                <div className="mb-6">
+                <div className="mb-4">
                   <p className="text-3xl font-bold text-accent">
                     {product.price.toFixed(2)}
                   </p>
@@ -186,6 +187,7 @@ export default function Products() {
             عرض كل المنتجات
           </Link>
         </div>
+
       </div>
     </section>
   );

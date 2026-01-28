@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   getProducts,
+  getProductsByCategory,
+  getRandomProducts,
   addProduct,
   updateProduct,
   deleteProduct,
@@ -8,11 +10,26 @@ import {
 
 /**
  * GET /api/products
- * Fetch all products
+ * Fetch all products, products by category, or random products
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const products = await getProducts();
+    const { searchParams } = new URL(request.url);
+    const categoryId = searchParams.get("category_id");
+    const random = searchParams.get("random");
+    const limit = searchParams.get("limit");
+
+    let products;
+
+    if (categoryId) {
+      products = await getProductsByCategory(categoryId);
+    } else if (random === "true") {
+      const limitNum = limit ? parseInt(limit) : 8;
+      products = await getRandomProducts(limitNum);
+    } else {
+      products = await getProducts();
+    }
+
     return NextResponse.json(products, { status: 200 });
   } catch (error) {
     console.error("GET /api/products error:", error);
@@ -56,6 +73,7 @@ export async function POST(request: NextRequest) {
       price_before_discount: Number(data.price_before_discount),
       image_urls: data.image_urls,
       specs: Array.isArray(data.specs) ? data.specs : [],
+      category_id: data.category_id || null,
     };
 
     const product = await addProduct(productData);
@@ -111,6 +129,7 @@ export async function PUT(request: NextRequest) {
     : undefined,
       image_urls: data.image_urls,
       specs: Array.isArray(data.specs) ? data.specs : undefined,
+      category_id: data.category_id !== undefined ? data.category_id : undefined,
     });
 
     if (!updated) {

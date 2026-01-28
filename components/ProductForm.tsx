@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -9,6 +9,13 @@ import { Plus, Trash2, Upload, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Form,
   FormControl,
@@ -19,12 +26,14 @@ import {
 } from "@/components/ui/form";
 import { uploadProductImage } from "@/lib/storage";
 import { toast } from "sonner";
+import { Category } from "@/types";
 
 const formSchema = z.object({
   title: z.string().min(2, "الاسم مطلوب"),
   description: z.string().optional(),
   price: z.string().optional(),
   price_before_discount: z.string().optional(),
+  category_id: z.string().optional(),
   specs: z
     .array(z.object({ value: z.string() }))
     .min(1, "أضف ميزة واحدة على الأقل"),
@@ -60,6 +69,36 @@ export default function ProductForm({
   const [newImagePreviews, setNewImagePreviews] = useState<string[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Fetch categories on component mount
+  useEffect(() => {
+    if (!isClient) return;
+    
+    const fetchCategories = async () => {
+      try {
+        setIsLoadingCategories(true);
+        const res = await fetch("/api/categories");
+        if (res.ok) {
+          const data: Category[] = await res.json();
+          setCategories(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setIsLoadingCategories(false);
+      }
+    };
+
+    fetchCategories();
+  }, [isClient]);
 
   const form = useForm<ProductFormData>({
     resolver: zodResolver(formSchema),
@@ -69,12 +108,14 @@ export default function ProductForm({
           specs: initialData.specs?.map((s: string) => ({ value: s })) || [
             { value: "" },
           ],
+          category_id: initialData.category_id || "none",
         }
       : {
           title: "",
           description: "",
           price: "",
           price_before_discount: "",
+          category_id: "none",
           specs: [{ value: "" }],
         },
   });
@@ -137,6 +178,7 @@ export default function ProductForm({
         ...values,
         image_urls: finalImageUrls,
         specs: values.specs.map((s) => s.value).filter((s) => s.trim() !== ""),
+        category_id: values.category_id === "none" ? null : values.category_id,
       };
 
       await onSubmit(formattedData);
@@ -263,6 +305,48 @@ export default function ProductForm({
                         placeholder="مثال: ترنج رياضي  "
                       />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="category_id"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm font-semibold text-foreground">
+                      الفئة (اختياري)
+                    </FormLabel>
+                    {isClient ? (
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="h-11 text-base">
+                            <SelectValue placeholder="اختر فئة..." />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="none">لا توجد فئة</SelectItem>
+                          {isLoadingCategories ? (
+                            <SelectItem value="loading" disabled>
+                              جاري التحميل...
+                            </SelectItem>
+                          ) : (
+                            categories.map((category) => (
+                              <SelectItem key={category.id} value={category.id}>
+                                {category.name}
+                              </SelectItem>
+                            ))
+                          )}
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <FormControl>
+                        <div className="h-11 text-base border border-input rounded-md bg-background px-3 py-2">
+                          اختر فئة...
+                        </div>
+                      </FormControl>
+                    )}
                     <FormMessage />
                   </FormItem>
                 )}
