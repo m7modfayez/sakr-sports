@@ -187,6 +187,7 @@ export default function Dashboard() {
               <DialogTitle>إضافة منتج</DialogTitle>
             </DialogHeader>
             <ProductForm
+              isEditMode={false}
               onSubmit={async (data: any) => {
                 try {
                   const res = await fetch("/api/products", {
@@ -207,6 +208,7 @@ export default function Dashboard() {
                   toast.error("حدث خطأ ما");
                 }
               }}
+              isLoading={loading}
             />
           </DialogContent>
         </Dialog>
@@ -221,6 +223,7 @@ export default function Dashboard() {
               <ProductForm
                 isEditMode
                 initialData={editingProduct}
+                isLoading={loading}
                 onSubmit={async (data: any) => {
                   try {
                     const res = await fetch(`/api/products?id=${editingProduct.id}`, {

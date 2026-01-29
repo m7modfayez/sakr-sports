@@ -26,13 +26,17 @@ import {
 } from "@/components/ui/form";
 import { uploadProductImage } from "@/lib/storage";
 import { toast } from "sonner";
-import { Category } from "@/types";
+import { Category, Product } from "@/types";
 
 const formSchema = z.object({
   title: z.string().min(2, "الاسم مطلوب"),
   description: z.string().optional(),
-  price: z.string().optional(),
-  price_before_discount: z.string().optional(),
+  price: z.string().refine((val) => !val || !isNaN(Number(val)) && Number(val) >= 0, {
+    message: "يرجى إدخال رقم صحيح أو ترك الحقل فارغاً",
+  }).optional(),
+  price_before_discount: z.string().refine((val) => !val || !isNaN(Number(val)) && Number(val) >= 0, {
+    message: "يرجى إدخال رقم صحيح أو ترك الحقل فارغاً",
+  }).optional(),
   category_id: z.string().optional(),
   specs: z
     .array(z.object({ value: z.string() }))
@@ -62,9 +66,15 @@ export default function ProductForm({
   isLoading,
   initialData,
   isEditMode,
-}: any) {
+}: {
+  onSubmit: (data: any) => Promise<void>;
+  isLoading: boolean;
+  initialData?: Product | null;
+  isEditMode: boolean;
+}) {
+
   const [existingImageUrls, setExistingImageUrls] = useState<string[]>(
-    normalizeImageUrls(initialData?.image_urls || initialData?.image_url || [])
+    normalizeImageUrls(initialData?.image_urls || [])
   );
   const [newImagePreviews, setNewImagePreviews] = useState<string[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
@@ -105,9 +115,11 @@ export default function ProductForm({
     defaultValues: initialData
       ? {
           ...initialData,
-          specs: initialData.specs?.map((s: string) => ({ value: s })) || [
-            { value: "" },
-          ],
+          price: initialData.price?.toString() || "",
+          price_before_discount: initialData.price_before_discount?.toString() || "",
+          specs: initialData.specs && initialData.specs.length > 0 
+            ? initialData.specs.map((s: string) => ({ value: s }))
+            : [{ value: "" }],
           category_id: initialData.category_id || "none",
         }
       : {
@@ -179,6 +191,9 @@ export default function ProductForm({
         image_urls: finalImageUrls,
         specs: values.specs.map((s) => s.value).filter((s) => s.trim() !== ""),
         category_id: values.category_id === "none" ? null : values.category_id,
+        // Convert empty price strings to null, valid numbers to number
+        price: values.price && values.price.trim() !== "" ? Number(values.price) : null,
+        price_before_discount: values.price_before_discount && values.price_before_discount.trim() !== "" ? Number(values.price_before_discount) : null,
       };
 
       await onSubmit(formattedData);

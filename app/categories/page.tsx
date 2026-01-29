@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Category } from "@/types";
+
 
 export default function CategoriesPage() {
   const router = useRouter();
@@ -86,27 +88,34 @@ export default function CategoriesPage() {
           )}
 
           {!isLoading && filteredCategories.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {filteredCategories.map((category) => (
-                <div
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
+              {filteredCategories.map((category, index) => (
+                <Link
                   key={category.id}
-                  className="bg-card rounded-xl overflow-hidden shadow-lg hover:scale-105 transition cursor-pointer"
-                  onClick={() => router.push(`/categories/${category.id}`)}
+                  href={`/categories/${category.id}`}
+                  className="group"
                 >
-                  <div className="h-48 bg-gradient-to-r from-accent to-accent/80 flex items-center justify-center">
-                    <div className="text-6xl">{category.icon || "📦"}</div>
-                  </div>
-
-                  <div className="p-6 text-right">
-                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                  <div
+                    className="bg-card p-8 rounded-xl shadow-lg hover-lift animate-fade-in-up transition-all duration-300 hover:scale-105 cursor-pointer"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
+                      {category.icon || "📦"}
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
                       {category.name}
                     </h3>
-
-                    <button className="w-full bg-accent text-accent-foreground py-3 rounded-lg hover:bg-accent/90 transition-colors">
-                      عرض المنتجات
-                    </button>
+                    <p className="hidden md:block text-sm text-muted-foreground leading-relaxed mb-4">
+                      استكشف منتجات قسم {category.name}
+                    </p>
+                    <div className="md:flex items-center justify-between">
+                      <div className="w-12 h-1 bg-accent rounded-full"></div>
+                      <span className="text-accent font-medium text-sm group-hover:translate-x-2 transition-transform">
+                        عرض المنتجات ←
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

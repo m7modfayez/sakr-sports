@@ -15,8 +15,7 @@ export default function ProductsPageApp() {
           title="جميع"
           titleHighlight="المنتجات"
           description="اكتشف مجموعتنا الكاملة من الأزياء الرجالية الفاخرة"
-          limit={8}
-          random={true}
+          limit={15}
           gridCols={{ mobile: 2, desktop: 4 }}
           showSearch={true}
           showViewAllButton={false}

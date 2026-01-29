@@ -20,7 +20,6 @@ interface ProductsPageProps {
   
   // Product fetching configuration
   limit?: number;
-  random?: boolean;
   categoryId?: string; // For category pages
   
   // Layout configuration
@@ -47,7 +46,6 @@ export default function ProductsPage({
   viewAllText = "عرض كل المنتجات",
   viewAllHref = "/products",
   limit = 8,
-  random = false,
   categoryId,
   gridCols = { mobile: 1, desktop: 4 },
   sectionClassName = "py-20 px-4 bg-background",
@@ -71,10 +69,6 @@ export default function ProductsPage({
           params.append('category_id', categoryId);
         }
         
-        if (random) {
-          params.append('random', 'true');
-        }
-        
         if (limit) {
           params.append('limit', limit.toString());
         }
@@ -95,7 +89,7 @@ export default function ProductsPage({
     };
 
     fetchProducts();
-  }, [categoryId, random, limit]);
+  }, [categoryId, limit]);
 
   const filteredProducts = products.filter((product) => {
     if (!showSearch || !searchQuery) return true;
@@ -239,13 +233,13 @@ export default function ProductsPage({
                         {product.description}
                       </p>
 
-                      {product.price_before_discount > 0 && (
+                      {product.price_before_discount && (
                         <p className="text-lg md:text-2xl line-through decoration-3 opacity-40 font-bold text-accent">
                           {product.price_before_discount.toFixed(2)}
                         </p>
                       )}
 
-                      {product.price > 0 && (
+                      {product.price && (
                         <p className="text-xl md:text-3xl font-bold text-accent mb-3">
                           {product.price.toFixed(2)}
                         </p>

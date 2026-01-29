@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   getProducts,
+  getLimitedProducts,
   getProductsByCategory,
-  getRandomProducts,
   addProduct,
   updateProduct,
   deleteProduct,
@@ -10,22 +10,21 @@ import {
 
 /**
  * GET /api/products
- * Fetch all products, products by category, or random products
+ * Fetch all products, products by category, or limited products
  */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const categoryId = searchParams.get("category_id");
-    const random = searchParams.get("random");
     const limit = searchParams.get("limit");
 
     let products;
 
     if (categoryId) {
       products = await getProductsByCategory(categoryId);
-    } else if (random === "true") {
-      const limitNum = limit ? parseInt(limit) : 8;
-      products = await getRandomProducts(limitNum);
+    } else if (limit) {
+      const limitNum = parseInt(limit);
+      products = await getLimitedProducts(limitNum);
     } else {
       products = await getProducts();
     }
@@ -69,8 +68,8 @@ export async function POST(request: NextRequest) {
     const productData = {
       title: data.title,
       description: data.description ?? "",
-      price: Number(data.price),
-      price_before_discount: Number(data.price_before_discount),
+      price: data.price !== null && data.price !== undefined ? Number(data.price) : null,
+      price_before_discount: data.price_before_discount !== null && data.price_before_discount !== undefined ? Number(data.price_before_discount) : null,
       image_urls: data.image_urls,
       specs: Array.isArray(data.specs) ? data.specs : [],
       category_id: data.category_id || null,
@@ -123,10 +122,8 @@ export async function PUT(request: NextRequest) {
     const updated = await updateProduct(id, {
       title: data.title,
       description: data.description,
-      price: data.price !== undefined ? Number(data.price) : undefined,
-      price_before_discount: data.price_before_discount !== undefined
-    ? Number(data.price_before_discount)
-    : undefined,
+      price: data.price !== null && data.price !== undefined ? Number(data.price) : null,
+      price_before_discount: data.price_before_discount !== null && data.price_before_discount !== undefined ? Number(data.price_before_discount) : null,
       image_urls: data.image_urls,
       specs: Array.isArray(data.specs) ? data.specs : undefined,
       category_id: data.category_id !== undefined ? data.category_id : undefined,

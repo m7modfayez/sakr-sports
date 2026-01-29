@@ -1,9 +1,9 @@
 export interface Product {
-  price_before_discount: number;
   id: string;
   title: string;
   description: string;
-  price: number;
+  price_before_discount: number | null;
+  price: number | null;
   image_urls: string[];
   specs: string[];
   created_at: string;
@@ -14,8 +14,8 @@ export interface Product {
 export interface ProductInsert {
   title: string;
   description?: string;
-  price: number;
-  price_before_discount: number;
+  price: number | null;
+  price_before_discount: number | null;
   image_urls: string[];
   specs: string[];
   category_id?: string | null;

@@ -60,6 +60,18 @@ export async function getProducts() {
   return data;
 }
 
+export async function getLimitedProducts(limit: number = 15) {
+  const supabase = getServerClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("app_id", APP_ID)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return data;
+}
+
 export async function getProductById(id: string) {
   const supabase = getServerClient();
   const { data, error } = await supabase
@@ -238,18 +250,4 @@ export async function getProductsByCategory(categoryId: string) {
     .order("created_at", { ascending: false });
   if (error) throw error;
   return data;
-}
-
-export async function getRandomProducts(limit: number = 8) {
-  const supabase = getServerClient();
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("app_id", APP_ID)
-    .order("created_at", { ascending: false });
-  if (error) throw error;
-  
-  // Simple random selection - shuffle and take first 'limit' items
-  const shuffled = data.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, limit);
 }

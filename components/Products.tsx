@@ -9,7 +9,6 @@ export default function Products() {
       titleHighlight="منتجاتنا المميزة"
       description="اكتشف اختيارنا المنتقى من الأزياء الرجالية الفاخرة"
       limit={4}
-      random={true}
       gridCols={{ mobile: 2, desktop: 4 }}
       showSearch={false}
       showViewAllButton={true}
